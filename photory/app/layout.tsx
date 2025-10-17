@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+import { cookies } from "next/headers";
 import Header from "../app/components/header/header";
 
 // const geistSans = Geist({
@@ -37,17 +38,23 @@ export const metadata: Metadata = {
   description: "Photory, the album that holds your memories.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  // 서버 쿠키 읽기
+  const cookieStore = await cookies();
+  const user = cookieStore.get("user");
+  const isLoggedIn = !!user?.value;
+
   return (
     <html lang="en">
       <body
         className={`${paperlogy.variable} antialiased`}
       >
-        <Header/>
+        {!isLoggedIn && <Header />}
         {children}
       </body>
     </html>
