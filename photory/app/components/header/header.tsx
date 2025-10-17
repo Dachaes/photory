@@ -19,6 +19,9 @@ const Header = () => {
     else if (pathname === "/albums") {
       setIndicatorPosition(0);
     }
+    else if (pathname === "/profile") {
+      setIndicatorPosition(127);
+    }
   }, [pathname]);
 
   return (
@@ -52,11 +55,11 @@ const Header = () => {
           앨범
         </Link>
         <Link 
-          href="/"
+          href="/profile"
           style={{ width: "100px", textAlign: "center" }}  
-          className={pathname === "/menu3" ? styles.active : ""}
+          className={pathname === "/profile" ? styles.active : ""}
         >
-          메뉴3
+          프로필
         </Link>
         <div
           className={styles.indicator}

@@ -1,21 +1,41 @@
-"use client";
+"use client"
 
 import { useState } from "react";
 import Image from "next/image";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.scss";
 
 import logo from "../../public/logo/logo_1024x480.png";
 
 const AuthPage = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // 새로고침 방지
-    console.log("로그인 요청:", { email, password });
-    // 여기에 API 요청 로직 추가
-    redirect("/");
+
+    // 로그인 요청
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      console.log("API 응답:", data);
+
+      if (data.success) {
+        router.push("/");
+      } 
+      else {
+        alert("아이디 또는 비밀번호를 확인해주세요.");
+      }
+    } catch (err) {
+      console.error("로그인 중 오류:", err);
+      alert("서버 오류가 발생했습니다.");
+    }
   };
 
   return (
