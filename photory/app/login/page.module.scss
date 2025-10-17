@@ -1,0 +1,102 @@
+.page {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+// 설명
+.descriptions {
+  width: 450px;
+  margin-top: 98px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2px;
+
+  .description {
+    font-size: 16px;
+
+    .subDescription {
+      font-size: 14px;
+      color: #999;
+      margin-left: 18px;
+      margin-bottom: 8px;
+    }
+  } 
+}
+
+
+// 로그인 폼
+.contents {
+  width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoImage {
+  width: 200px;
+}
+
+.loginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  input {
+    width: 100%;
+    padding: 10px 15px;
+
+    background-color: #f8f8f8;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+
+    color: #333;
+    font-size: 14px;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #E2C7F8;
+      box-shadow: 0 0 0 2px #f3ebf9a8;
+    }
+    &::placeholder {
+      color: #bbb;
+      opacity: 1;
+    }
+  }
+
+  button {
+    width: 100%;
+    flex: 1;
+    padding: 8px 16px;
+    background-color: #F3EBF9;
+    border: 1px solid #EAD9F8;
+    border-radius: 6px;
+    color: #333;
+    font-size: 15px;
+
+    cursor: pointer;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: #EAD9F8;
+      border: 1px solid #E2C7F8;
+      color: #333;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}

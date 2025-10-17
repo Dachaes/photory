@@ -1,0 +1,66 @@
+.logo {
+  height: 10vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; 
+  // background-color: aqua;
+
+  .logoLink {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .loginButton {
+    position: absolute;
+    width: 100px;
+    padding: 8px 16px;
+    right: 0;
+    margin-right: 14px;
+
+    color: #888;
+    font-size: 15px;
+
+    cursor: pointer;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+
+    &:hover {
+      color: #555;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+.nav {
+  position: relative;
+  height: 4vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+
+
+
+  .active {
+    font-weight: 500;
+  }
+
+  .indicator {
+    position: absolute;
+    width: 100px;
+    bottom: -1px; /* nav의 border와 같은 위치 */
+    height: 3px;
+    background-color: #E2C7F8;
+    transition: transform 0.2s ease, width 0.2s ease;
+  }
+}

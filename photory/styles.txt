@@ -1,0 +1,96 @@
+# 원색 대용
+- 파스텔 red: #FCE9E7
+- 파스텔 orange: #FBEBDE
+- 파스텔 yellow: #F9F3DC
+- 파스텔 green: #E8F1EC
+- 파스텔 blue: #E5F2FC
+- 파스텔 purple: #F3EBF9 -> #EAD9F8 -> #E2C7F8
+
+- red:  #f82e2e -> #fa7e7e -> #F8B5B5 -> #F8D5D5
+- orange: #fc682e -> #fa9b7e
+- light blue: #1a98ff
+- blue:  #271cf8 -> #6aafff -> #8CCDF5 -> #AFD8F3 -> #dcedff
+- green:  #119e11 -> #7cca7c
+- yellow: #ffe922 -> #d8ce76
+
+# 인풋 박스 기본 설정
+input {
+  width: 100%;
+  padding: 10px 15px;
+
+  background-color: #f8f8f8;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+
+  color: #333;
+  font-size: 14px;
+
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: #E2C7F8;
+    box-shadow: 0 0 0 2px #f3ebf9a8;
+  }  
+
+  &::placeholder {
+    color: #bbb;
+    opacity: 1;
+  }
+}
+
+
+# 버튼 기본 설정 (보라 버튼)
+button {
+  width: 100%;
+  flex: 1;
+  padding: 8px 16px;
+  background-color: #F3EBF9;
+  border: 1px solid #EAD9F8;
+  border-radius: 6px;
+  color: #333;
+  font-size: 15px;
+
+  cursor: pointer;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: #EAD9F8;
+    border: 1px solid #E2C7F8;
+    color: #333;
+  }
+  &:disabled {
+    // background-color: #DDDDDD; 
+    // border: 1px solid #BBBBBB;
+    // color: #333;
+    // cursor: not-allowed;
+    // opacity: 0.6;
+    // transform: none;
+    // box-shadow: none;
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+
+# 버튼 기본 설정 (선 없는 버튼)
+button {
+  position: absolute;
+  width: 100px;
+  right: 0;
+
+  color: #888;
+  font-size: 15px;
+
+  cursor: pointer;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+
+  &:hover {
+    color: #555;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
