@@ -54,7 +54,7 @@ export default async function RootLayout({
       <body
         className={`${paperlogy.variable} antialiased`}
       >
-        {!isLoggedIn && <Header />}
+        <Header isLoggedIn={isLoggedIn} />
         {children}
       </body>
     </html>
