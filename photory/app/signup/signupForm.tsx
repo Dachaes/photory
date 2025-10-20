@@ -10,14 +10,14 @@ const SignupForm = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
   
   // ✅ 회원가입 요청
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // 1️⃣ 입력값 검증
-    if (!id || !password || !passwordCheck || !nickname) {
+    if (!id || !password || !passwordCheck || !email) {
       alert("모든 필드를 입력해주세요.");
       return;
     }
@@ -79,14 +79,14 @@ const SignupForm = () => {
       <input 
         type="password" 
         value={passwordCheck} 
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => setPasswordCheck(e.target.value)}
         // required 
         placeholder="비밀번호 확인" 
       />
       <input 
-        type="text" 
-        value={nickname} 
-        onChange={(e) => setNickname(e.target.value)}
+        type="email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)}
         // required 
         placeholder="이메일" 
       /> 

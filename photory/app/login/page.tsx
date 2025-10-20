@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import styles from "./page.module.scss";
 
+import loginImage from "../../public/main_images/album.png"
 import logo from "../../public/logo/logo_1024x480.png";
 import LoginForm from "./loginForm";
 
@@ -17,6 +18,12 @@ const LoginPage = async () => {
 
   return (
     <div className={styles.page}>
+      <Image
+        src={loginImage}
+        alt="Login Image"
+        className={styles.loginImage}
+      >        
+      </Image>
       <div className={styles.contents}>
         <Image 
           src={logo} 
