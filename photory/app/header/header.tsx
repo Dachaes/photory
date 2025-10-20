@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./header.module.scss";
 
-import logo from "../../../public/logo/logo_1024x480.png";
+import logo from "../../public/logo/logo_1024x480.png";
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -58,9 +58,12 @@ const Header = ({ isLoggedIn } : HeaderProps ) => {
 
   return (
     <>
-      { pathname !== "/login" ? (
+      { (pathname === "/login" || "/signup")  ? (
       <>
-      <div className={styles.logo}>
+      </>
+      ) : (
+      <>
+        <div className={styles.logo}>
         <Link href="/" className={styles.logoLink}>
           <Image
             src={logo}
@@ -112,8 +115,6 @@ const Header = ({ isLoggedIn } : HeaderProps ) => {
         />
       </nav>
       </>
-      ) : (
-        <></>
       )}
     </>
   );

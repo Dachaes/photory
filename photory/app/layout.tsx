@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import { cookies } from "next/headers";
-import Header from "../app/components/header/header";
+import Header from "../app/header/header";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import styles from "./loginForm.module.scss";
 
 const LoginForm = () => {
@@ -24,6 +25,7 @@ const LoginForm = () => {
   };
 
   return (
+    <>
     <form 
       onSubmit={handleLogin} 
       className={styles.loginForm}
@@ -33,7 +35,7 @@ const LoginForm = () => {
         value={id} 
         onChange={(e) => setId(e.target.value)} 
         // required 
-        placeholder="사용자 이름 또는 이메일" 
+        placeholder="아이디 또는 이메일" 
       /> 
       <input 
         type="password" 
@@ -44,6 +46,13 @@ const LoginForm = () => {
       /> 
       <button type="submit">로그인</button> 
     </form>
+    <Link 
+      href="/signup"
+      className={styles.signup}>계정이 없으신가요?
+    </Link>
+    {/* 자동 로그인 */}
+    {/* 비밀번호 찾기 */}
+    </>
   );
 }
 
