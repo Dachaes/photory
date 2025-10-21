@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
@@ -14,9 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       Int     @id @default(autoincrement())  // 내부 기본키
-  userId   String  @unique                        // 사용자가 입력하는 아이디 (중복 불가)
-  password String                               // 비밀번호
-  email    String  @unique                       // 이메일 (중복 불가)
+model Member {
+  id       Int     @id @default(autoincrement())
+  userId   String  @unique
+  password String
+  email    String  @unique
+
+  @@map("member")
 }

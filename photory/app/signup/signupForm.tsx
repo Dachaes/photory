@@ -1,24 +1,31 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import styles from "./signupForm.module.scss";
 
 const SignupForm = () => {
   const router = useRouter();
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
-  const [email, setEmail] = useState("");
-  
+  const [userId, setUserId] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordCheck, setPasswordCheck] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
   // ✅ 회원가입 요청
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // 1️⃣ 입력값 검증
-    if (!id || !password || !passwordCheck || !email) {
+    if (!userId || !password || !passwordCheck || !email) {
       alert("모든 필드를 입력해주세요.");
+      return;
+    }
+
+    // ✅ 아이디 형식 검증 (영문만, 8자 이하)
+    const idRegex = /^[A-Za-z0-9_]{1,10}$/;
+    const normalizedId = userId.toLowerCase();
+    if (!idRegex.test(userId)) {
+      alert("아이디는 영어, 숫자, 밑줄(_)만 가능하며 10자 이하여야 합니다.");
       return;
     }
 
@@ -27,33 +34,26 @@ const SignupForm = () => {
       return;
     }
 
-    redirect("/login");
-
     // 2️⃣ 서버에 회원가입 요청
-    // try {
-    //   const res = await fetch("/api/signup", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({
-    //       id,
-    //       password,
-    //       nickname,
-    //     }),
-    //   });
-
-    //   const data = await res.json();
-
-    //   // 3️⃣ 결과 처리
-    //   if (res.ok && data.success) {
-    //     alert("회원가입이 완료되었습니다!");
-    //     router.push("/login"); // 가입 후 로그인 페이지로 이동
-    //   } else {
-    //     alert(data.message || "회원가입에 실패했습니다.");
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    //   alert("서버 오류가 발생했습니다. 다시 시도해주세요.");
-    // }
+    try {
+      const res = await fetch("/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ normalizedId, email, password }),
+      });
+      const data = await res.json();
+  
+      if (res.ok && data.success) {
+        alert(data.message);
+        router.push("/login");
+      }
+      else {
+        alert(data.message);
+      }
+    }
+    catch (error) {
+      alert("알 수 없는 오류가 발생했습니다.");
+    }
   };
 
   return (
@@ -63,11 +63,12 @@ const SignupForm = () => {
       className={styles.loginForm}
     >
       <input 
-        type="id" 
-        value={id} 
-        onChange={(e) => setId(e.target.value)} 
+        type="userId" 
+        value={userId} 
+        onChange={(e) => setUserId(e.target.value)} 
         // required 
-        placeholder="아이디(사용자 이름)" 
+        placeholder="아이디(사용자 이름)"
+        maxLength={10}
       /> 
       <input 
         type="password" 

@@ -1,12 +1,11 @@
-import NextAuth, { type AuthOptions } from "next-auth"
+import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaClient } from "@prisma/client"
 import { compare } from "bcryptjs"
 
 const prisma = new PrismaClient()
 
-// ✅ authOptions를 export
-export const authOptions: AuthOptions = {
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -46,8 +45,6 @@ export const authOptions: AuthOptions = {
       return session
     },
   },
-}
+})
 
-// ✅ 이 부분은 그대로 유지
-const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }

@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-import { cookies } from "next/headers";
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "./api/auth/[...nextauth]/route" 
 import Header from "../app/header/header";
 
 // const geistSans = Geist({
@@ -44,10 +45,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  // 서버 쿠키 읽기
-  const cookieStore = await cookies();
-  const user = cookieStore.get("user");
-  const isLoggedIn = !!user?.value;
+  // ✅ NextAuth 세션 직접 확인
+  const session = await getServerSession(authOptions)
+  const isLoggedIn = !!session
 
   return (
     <html lang="en">

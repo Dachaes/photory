@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
+    "bcryptjs": "^3.0.2",
     "next": "15.5.5",
     "next-auth": "^4.24.11",
+    "prisma": "^6.17.1",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -20,7 +22,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.37.0",
-    "prisma": "^6.17.1",
     "sass": "^1.93.2",
     "tailwindcss": "^4",
     "typescript": "^5"

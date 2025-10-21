@@ -2,26 +2,40 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { signIn } from "next-auth/react"
 import styles from "./loginForm.module.scss";
 
 const LoginForm = () => {
   const router = useRouter();
-  const [id, setId] = useState("");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
 
   // ✅ 로그인 요청
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, password }),
-      credentials: "include",
-    });
+    // const res = await fetch("/api/login", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ id, password }),
+    //   credentials: "include",
+    // });
 
-    const data = await res.json();
-    if (data.success) router.push("/");
-    else alert("아이디 또는 비밀번호를 확인해주세요.");
+    // const data = await res.json();
+    // if (data.success) router.push("/");
+    // else alert("아이디 또는 비밀번호를 확인해주세요.");
+    const res = await signIn("credentials", {
+      userId,
+      password,
+      redirect: false,
+    })
+
+    if (res?.ok) {
+      router.push("/");
+      router.refresh();
+    } 
+    else {
+      alert("로그인 실패");
+    }
   };
 
   return (
@@ -31,9 +45,9 @@ const LoginForm = () => {
       className={styles.loginForm}
     >
       <input 
-        type="id" 
-        value={id} 
-        onChange={(e) => setId(e.target.value)} 
+        type="text" 
+        value={userId} 
+        onChange={(e) => setUserId(e.target.value)} 
         // required 
         placeholder="아이디 또는 이메일" 
       /> 

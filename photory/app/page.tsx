@@ -1,6 +1,5 @@
 // photo by "<a href="https://kr.freepik.com/free-photo/view-beautifully-decorated-scrapbook_30592674.htm">출처 freepik</a>"
 // app/page.tsx
-import Image from "next/image";
 import styles from "./page.module.scss";
 
 export default function Home() {
